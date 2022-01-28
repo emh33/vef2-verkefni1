@@ -1,0 +1,46 @@
+{
+  "name": "vef2-2022-v1",
+  "version": "1.0.0",
+  "description": "[Kynning á verkefni í tíma](https://youtu.be/ow9NdluaWCs?t=110).",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "node ./src/build.js && cpy public/styles.css dist",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./*.test.js",
+    "sass": "sass public/styles.scss public/styles.css",
+    "sass-watch": "sass --watch *.scss styles.css",
+    "prettier": "prettier --write",
+    "lint": "concurrently npm:lint:*",
+    "lint:eslint": "eslint ./src/*.js",
+    "lint:stylelint": "stylelint ./public/styles/*.scss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emh33/vef2-verkefni1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "eslint": "8.7.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.25.4",
+    "jest": "^27.4.7",
+    "prettier": "2.5.1",
+    "sass": "^1.49.0",
+    "stylelint": "^14.3.0",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-config-standard": "^24.0.0"
+  },
+  "dependencies": {
+    "cpy-cli": "^3.1.1",
+    "gray-matter": "^4.0.3",
+    "marked": "^4.0.10",
+    "math-stats": "^0.4.1",
+    "simple-statistics": "^7.7.3"
+  }
+}
