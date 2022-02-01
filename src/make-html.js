@@ -1,41 +1,61 @@
-export function webTemplate( title, container ){
+export function webTemplate( title, content ){
     return `
     <!DOCTYPE html>
     <html>
         <head>
-            <title> Þetta eru gögn úr skrá ${title ?? ''}</title>
-            <link rel="stylesheet" href="styles.css">
+            <title>${title ?? 'Gagnavinnsla'}</title>
+            <link rel="stylesheet" href="../public/styles.css">
         </head>
         <body>
-          <div class="wrapper">
+          <div class="container">
             <header class="header">
              <h1>Gagnavinnsla</h1>
+             <span>Vefforritun 2 - Verkefni 1 </span>
             </header>
-            <main class="main">
-              ${container ?? ''}
+            <main>
+             <div class="content">${content ?? ''}</div>
             </main>
           </div>
         </body>
     </html>`;
 }
-export function makeIndex( entries ){
+
+export function makeIndex( files ,filesInfo){
     let list = '';
-    for (const entry of entries){
-        const link =`<li><a href="${entry}.html">Þetta er skrá númer ${entry}</a></li>`;
+    for (const file of files){
+      const {lenghtNum, std} = filesInfo.get(file);
+        const link =`<li><a href="${file}.html">
+        <div>Skráarnafn: ${file}</div>
+        <div>Fjöldi gagna: ${lenghtNum ?? 'Vantar gögn'}</div>
+        <div>Miðgildi gagna: ${std ?? 'Engin gögn til staðar'}</div>
+        </a></li>`;
         list+=link;
     }
-    return `<ul>${list}</ul>`;
+    return `
+    <div>
+       <ul class="files">${list}</ul>
+    </div>
+    `;
 }
 
 
-export function mainHTML(data) {
+export function resultHTML(data) {
 
-  const {stats,filename} =data;
+  const {numbers,stats,filename} =data;
+
+  let numb='';
+  for(const number of numbers){
+    numb+=`${number} `;
+
+  }
 
   let result = '';
   let row='';
   if(Object.keys(stats).length === 0){
-    result='Gagnasett hefur engar niðurstöður';
+    result=`
+    <section class="no-results">
+      <p>Gagnasett hefur engar niðurstöður.</p>
+    </section>`;
   }
   else{
     Object.entries(stats).forEach((entry) => {
@@ -48,20 +68,31 @@ export function mainHTML(data) {
       row+=link;
     });
 
-    result=`<table>
-    <thead>
-        <tr>
-            <th colspan="2">Niðurstöður</th>
-        </tr>
-    </thead>
-    <tbody>${row}</tbody>
-    </table>`
+    result=`
+    <section class="result-stats">
+      <table>
+        <thead>
+            <tr>
+                <th colspan="2">Niðurstöður úr skrá ${filename}</th>
+            </tr>
+        </thead>
+        <tbody>${row}</tbody>
+      </table>
+    </section>
+    <section class="result-data">
+    <table>
+      <thead>
+          <tr>
+              <th colspan="1">Gögn</th>
+          </tr>
+      </thead>
+    <tbody><tr>
+      <td>${numb}</td>
+    </tr></tbody>
+    </table>
+    </section>`
   }
 
-  return `
-  <section>
-    <div class = "filename">Þessi skrá er númer ${filename}</div>
-    <div class ="result">${result}</div>
-  </section>`;
+  return `${result}`;
 }
 

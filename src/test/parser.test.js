@@ -20,7 +20,7 @@ describe('parser', () => {
     const parsed = parse(input);
     expect(parsed).toStrictEqual([123.456]);
   });
-  it('parses a BigInt', () => {
+  it('parses a thousand separator', () => {
     const input ='1.000.000,123';
 
     const parsed = parse(input);

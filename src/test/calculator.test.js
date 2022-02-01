@@ -2,7 +2,7 @@ import { describe, expect, it } from '@jest/globals';
 import { calculate } from '../calculator';
 
 describe('calculate', () => {
-  it.skip('calculate a array', () => {
+  it('calculate a array', () => {
     const input =[10, 3, -4, 1, 8, 0];
 
     const stats = calculate(input);

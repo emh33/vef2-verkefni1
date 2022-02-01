@@ -1,9 +1,194 @@
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-  border-radius: 2em;
-  overflow: hidden;
+/* Setjum inn „reset“ sem fjarlægir margin og padding af öllu */
+* {
+  margin: 0;
+  padding: 0;
 }
 
-/*# sourceMappingURL=styles.css.map */
+/* Reiknum stærð á öllum boxum sem border-box */
+html {
+  box-sizing: border-box;
+}
+
+/* og látum erfast á allt */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  /* Grunn bilið okkar er 1rem == 16px */
+  --spacing: 1rem;
+  /* Hámarksbreidd á efni */
+  --max-width: 1400px;
+
+  /* Lámarksbreidd á box */
+  --min-height-box: 100px;
+  --min-width-box: 150px;
+
+  --color-text: #222;
+  --color-link: rgb(249, 243, 243);
+  --color-border: rgb(91, 91, 91);
+  --primary-color: #fffdfa;
+  --secondar-color: #929090;
+
+  /* Letur stillingar */
+  --font-size: 16px;
+  --font-family-base: helvetica, arial, sans-serif;
+  --font-family-heading: georgia, serif;
+
+  /* Grid stillingar */
+  --columns: 12;
+  --gutter: 30px;
+  --offset: 20px;
+}
+
+body {
+  background-color: var(--primary-color);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size);
+  line-height: 1.5;
+  padding-top: var(--spacing);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid var(--color-border);
+  padding: 8px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-family-heading);
+}
+
+/* Utan um allt efni, miðjar og setur breidd */
+.container {
+  /* Útbýr bil á milli lóðréttra eininga */
+  display: grid;
+  gap: var(--gutter);
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  margin: 0 auto;
+  max-width: var(--max-width);
+  width: calc(100% - (2 * var(--offset)));
+}
+
+main {
+  /* Útbýr bil á milli lóðréttra eininga */
+  display: grid;
+  gap: var(--gutter);
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  /* setjum margin neðst, annars endar efni skyndilega */
+  margin-bottom: var(--gutter);
+}
+
+/*** Einingar ***/
+
+/* Fyrirsögn */
+header h1 {
+  font-size: 2rem;
+  font-variation-settings: 'wght' 400;
+  line-height: 1;
+}
+
+/* index */
+.files li {
+  background-color: var(--secondar-color);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--gutter);
+  min-height: var(--min-height-box);
+  min-width: var(--min-width-box);
+  padding: var(--spacing);
+}
+
+.files li a {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 700px) {
+  .files {
+    display: grid;
+    gap: var(--gutter);
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .files li {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 1000px) {
+  .files li {
+    grid-column: span 4;
+  }
+}
+
+/* stats table */
+.result-stats {
+  display: flex;
+  flex-direction: column;
+}
+
+/* data table */
+.result-data {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--gutter);
+}
+
+.result-data table {
+  grid-column: span 12;
+}
+
+@media (min-width: 500px) {
+  .result-stats {
+    display: grid;
+    gap: var(--gutter);
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .result-stats table {
+    grid-column: 3 / span 8;
+  }
+
+  .result-data {
+    display: grid;
+    gap: var(--gutter);
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .result-data table {
+    grid-column: 3 / span 8;
+  }
+}
+
+@media (min-width: 1000px) {
+  .result-stats table {
+    grid-column: 4 / span 6;
+  }
+
+  .result-data table {
+    grid-column: 4 / span 6;
+  }
+}

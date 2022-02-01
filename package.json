@@ -2,23 +2,19 @@
   "name": "vef2-2022-v1",
   "version": "1.0.0",
   "description": "[Kynning á verkefni í tíma](https://youtu.be/ow9NdluaWCs?t=110).",
+  "type": "module",
   "main": "index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "build": "node ./src/build.js && cpy public/styles.css dist",
+    "build": "node ./src/build.js && cpy ./public dist",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./*.test.js",
-    "sass": "sass public/styles.scss public/styles.css",
-    "sass-watch": "sass --watch *.scss styles.css",
     "prettier": "prettier --write",
     "lint": "concurrently npm:lint:*",
     "lint:eslint": "eslint ./src/*.js",
-    "lint:stylelint": "stylelint ./public/styles/*.scss"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/emh33/vef2-verkefni1.git"
+    "lint:stylelint": "stylelint ./public/styles/*.scss",
+    "dev": "browser-sync start --serveStatic ./dist --server --files ./public/styles.css ./dist/*.html"
   },
   "keywords": [],
   "author": "",
@@ -37,10 +33,9 @@
     "stylelint-config-standard": "^24.0.0"
   },
   "dependencies": {
+    "browser-sync": "^2.27.7",
     "cpy-cli": "^3.1.1",
-    "gray-matter": "^4.0.3",
-    "marked": "^4.0.10",
     "math-stats": "^0.4.1",
-    "simple-statistics": "^7.7.3"
+    "simple-statistics":"^7.7.3"
   }
 }

@@ -4,7 +4,7 @@ import { mkdir, readdir, readFile, stat, writeFile } from 'fs/promises';
 import { join } from 'path';
 import { calculate } from './calculator.js';
 /* pakkar frá okkur eigin kóða */
-import { mainHTML, makeIndex, webTemplate } from './make-html.js';
+import { resultHTML, makeIndex, webTemplate } from './make-html.js';
 import { parse } from './parser.js';
 
 
@@ -29,6 +29,7 @@ async function main() {
   }
 
  const htmlfiles =[];
+ const filesInfo= new Map()
   for (const file of files) {
     const path = join(BLOG_DIR, file);
     const data= await readFile(path);
@@ -48,17 +49,23 @@ async function main() {
       'filename':filename
     };
 
-    const template = webTemplate(result.filename,mainHTML(result));
+    const template = webTemplate(result.filename,resultHTML(result));
 
     const slug = join(OUTPUT_DIR, `${result.filename}.html`);
 
     await writeFile(slug, template, { flag: 'w+' });
 
     htmlfiles.push(filename);
+    filesInfo.set(filename, {lenghtNum: result.numbers.length, std: result.stats.Staðalfrávik})
   }
 
-  const index = webTemplate(' Gagnavinnsla ', makeIndex(htmlfiles));
+  const index = webTemplate(' Gagnavinnsla ', makeIndex(htmlfiles,filesInfo));
+  try{
   await writeFile(join(OUTPUT_DIR, 'index.html'), index, { flag: 'w+' });
+  }
+  catch(e){
+    console.error(`Can't write file index : ${e}` )
+  }
 
 }
 
