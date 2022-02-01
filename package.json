@@ -8,7 +8,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "node ./src/build.js && cpy public dist",
+    "build": "node ./src/build.js && cpy public/styles.css dist",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./*.test.js",
     "prettier": "prettier --write",
     "lint": "concurrently npm:lint:*",

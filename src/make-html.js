@@ -4,7 +4,7 @@ export function webTemplate( title, content ){
     <html>
         <head>
             <title>${title ?? 'Gagnavinnsla'}</title>
-            <link rel="stylesheet" href="../public/styles.css">
+            <link rel="stylesheet" href="styles.css">
         </head>
         <body>
           <div class="container">
