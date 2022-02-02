@@ -12,8 +12,8 @@
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./*.test.js",
     "prettier": "prettier --write",
     "lint": "concurrently npm:lint:*",
-    "lint:eslint": "eslint ./src/*.js",
-    "lint:stylelint": "stylelint ./public/styles/*.scss",
+    "lint:eslint": "eslint ./src/**/*.js",
+    "lint:stylelint": "stylelint ./public/styles.css",
     "dev": "browser-sync start --serveStatic ./dist --server --files ./public/styles.css ./dist/*.html"
   },
   "keywords": [],

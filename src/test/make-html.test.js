@@ -103,7 +103,7 @@ describe('webTemplate', () => {
     <html>
         <head>
             <title>Skrá</title>
-            <link rel="stylesheet" href="../public/styles.css">
+            <link rel="stylesheet" href="styles.css">
         </head>
         <body>
           <div class="container">
@@ -125,7 +125,7 @@ describe('webTemplate', () => {
     <html>
         <head>
             <title>Gagnavinnsla</title>
-            <link rel="stylesheet" href="../public/styles.css">
+            <link rel="stylesheet" href="styles.css">
         </head>
         <body>
           <div class="container">
@@ -147,7 +147,7 @@ describe('webTemplate', () => {
     <html>
         <head>
             <title>title</title>
-            <link rel="stylesheet" href="../public/styles.css">
+            <link rel="stylesheet" href="styles.css">
         </head>
         <body>
           <div class="container">
